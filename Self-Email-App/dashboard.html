@@ -1,76 +1,45 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-    <script>
-        // 1. Check if the user has the login token
-        if (sessionStorage.getItem("isLoggedIn") !== "true") {
-            // 2. If not, immediately redirect them back to the login page
-            window.location.replace("index.html"); 
-            // Note: using replace() instead of href prevents them from using the "Back" button to return to the dashboard.
-        }
-    </script>
-</head>
-<body>
-    <h1>Welcome to the Dashboard</h1>
-    </body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
+<!-- © 2025 Sarfaraz
+Licensed under the MIT License. See LICENSE file for details. -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledger Dashboard</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Mail</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         if (sessionStorage.getItem("isLoggedIn") !== "true") {
             window.location.replace("index.html"); 
         }
     </script>
-    
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
-        .header { display: flex; justify-content: space-between; align-items: center; background: #333; color: white; padding: 10px 20px; border-radius: 8px; }
-        .logout-btn { background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; }
-        .logout-btn:hover { background: #c82333; }
-        .content { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
+  <link rel="stylesheet" href="./style.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
 </head>
 <body>
 
-    <div class="header">
-        <h2>Customer Dues Ledger</h2>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
+  <!-- © 2025 Sarfaraz. All rights reserved. -->
 
-    <div class="content">
-        <h3>Active Accounts</h3>
-        <p>Welcome to the secure dashboard. Only authenticated users can see this data.</p>
-        
-        <table>
-            <tr>
-                <th>Customer Name</th>
-                <th>Due Amount (₹)</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>2,500</td>
-                <td>Pending</td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>800</td>
-                <td>Overdue</td>
-            </tr>
-        </table>
-    </div>
+  <div class="container">
+    <h3>Send Email</h3>
+    <!-- <input type="text" id="userName" placeholder="Your name"> -->
+    <input type="email" id="userEmail" placeholder="Recipient email">
+    <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+    <button id="sendBtn" onclick="sendMail()">
+      <span id="btnText">Send</span>
+      <div class="spinner" id="btnSpinner"></div>
+    </button>
+  </div>
 
+  <!-- Popup -->
+  <div class="popup" id="popup"></div>
+
+  <!-- Footer copyright -->
+  <div class="footer">
+    &copy; 2025 Sarfaraz. All rights reserved.
+  </div>
     <script>
         // Logout function destroys the session token and redirects
         function logout() {
@@ -78,6 +47,8 @@
             window.location.replace("index.html");
         }
     </script>
+  <script src="./script.js"></script>
 
 </body>
+
 </html>
